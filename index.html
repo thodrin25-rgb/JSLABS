@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NORTH/SHOP — High-Voltage Shopify Agency</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{ --ink:#0a0a0a; --bone:#f4f2ec; --lime:#d4ff3a; --pop:#ff4d1c; --violet:#5b3dff; }
+*{-webkit-font-smoothing:antialiased;}
+html,body{background:var(--bone);color:var(--ink);font-family:'Space Grotesk',sans-serif;}
+.display{font-family:'Archivo Black',sans-serif;letter-spacing:-0.03em;line-height:0.85;text-transform:uppercase;}
+.mono{font-family:'JetBrains Mono',monospace;}
+.marquee{display:flex;overflow:hidden;white-space:nowrap;}
+.marquee-track{display:flex;animation:scroll 30s linear infinite;}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.card-hover{transition:transform .4s cubic-bezier(.2,.9,.2,1),box-shadow .4s;}
+.card-hover:hover{transform:translate(-4px,-4px);box-shadow:12px 12px 0 var(--ink);}
+.card-hover-lime:hover{box-shadow:12px 12px 0 var(--lime);}
+.btn-primary{background:var(--ink);color:var(--bone);border:2px solid var(--ink);transition:all .2s;}
+.btn-primary:hover{background:var(--lime);color:var(--ink);transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);}
+.btn-outline{background:transparent;color:var(--ink);border:2px solid var(--ink);transition:all .2s;}
+.btn-outline:hover{background:var(--ink);color:var(--lime);transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--pop);}
+.btn-invert{background:var(--lime);color:var(--ink);border:2px solid var(--lime);transition:all .2s;}
+.btn-invert:hover{background:transparent;color:var(--lime);transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--pop);}
+.tag{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;}
+.tag::before{content:"";width:8px;height:8px;background:var(--pop);border-radius:9999px;display:inline-block;}
+.tag-lime::before{background:var(--lime);}
+.rot-hover{transition:transform .3s;}
+.rot-hover:hover{transform:rotate(-2deg) scale(1.02);}
+.stroke-text{-webkit-text-stroke:2px var(--ink);color:transparent;}
+.stroke-text-bone{-webkit-text-stroke:2px var(--bone);color:transparent;}
+.stroke-text-lime{-webkit-text-stroke:2px var(--lime);color:transparent;}
+details[open] summary .plus{transform:rotate(45deg);}
+.plus{transition:transform .3s;}
+section{scroll-margin-top:90px;}
+.blob{filter:blur(60px);opacity:.55;}
+.page{display:none;}
+.page.active{display:block;animation:fadeUp .5s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.nav-link.active{color:var(--pop);}
+.ticker{font-variant-numeric:tabular-nums;}
+input,textarea,select{background:transparent;border:2px solid var(--ink);padding:14px 16px;width:100%;font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;transition:box-shadow .2s,transform .2s;}
+input:focus,textarea:focus,select:focus{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--lime),6px 6px 0 2px var(--ink);}
+::placeholder{color:rgba(10,10,10,.45);}
+</style>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-50 border-b-2 border-black bg-[#f4f2ec]/90 backdrop-blur">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10 h-16 md:h-20 flex items-center justify-between">
+    <a href="#" data-page-link="home" class="display text-xl md:text-2xl nav-page">NORTH<span class="text-[var(--pop)]">/</span>SHOP</a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
+      <a href="#services" data-page-link="home" class="nav-page hover:text-[var(--pop)]">Services</a>
+      <a href="#work" data-page-link="home" class="nav-page hover:text-[var(--pop)]">Work</a>
+      <a href="#process" data-page-link="home" class="nav-page hover:text-[var(--pop)]">Process</a>
+      <a href="#" data-page-link="promotions" class="nav-page nav-link hover:text-[var(--pop)]">Promotions</a>
+      <a href="#" data-page-link="launches" class="nav-page nav-link hover:text-[var(--pop)]">Launches</a>
+      <a href="#faq" data-page-link="home" class="nav-page hover:text-[var(--pop)]">FAQ</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="#contact" data-page-link="home" class="nav-page btn-primary px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-bold uppercase tracking-wider">Start a project →</a>
+      <button id="menuBtn" class="md:hidden btn-outline px-3 py-2 text-lg leading-none" aria-label="Menu">≡</button>
+    </div>
+  </div>
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="hidden md:hidden border-t-2 border-black bg-[var(--bone)]">
+    <nav class="px-5 py-4 flex flex-col gap-3 text-sm font-bold uppercase tracking-wider">
+      <a href="#services" data-page-link="home" class="nav-page py-1">Services</a>
+      <a href="#work" data-page-link="home" class="nav-page py-1">Work</a>
+      <a href="#process" data-page-link="home" class="nav-page py-1">Process</a>
+      <a href="#" data-page-link="promotions" class="nav-page py-1 text-[var(--pop)]">Promotions</a>
+      <a href="#" data-page-link="launches" class="nav-page py-1 text-[var(--pop)]">Launches</a>
+      <a href="#faq" data-page-link="home" class="nav-page py-1">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ PAGE: HOME ============ -->
+<main id="page-home" class="page active">
+
+<!-- HERO -->
+<section class="relative pt-28 md:pt-36 pb-16 md:pb-24 overflow-hidden">
+  <div class="absolute -top-20 -left-20 w-[400px] h-[400px] bg-[var(--lime)] rounded-full blob"></div>
+  <div class="absolute bottom-0 right-0 w-[300px] h-[300px] bg-[var(--pop)] rounded-full blob"></div>
+  <div class="relative max-w-[1400px] mx-auto px-5 md:px-10">
+    <div class="flex items-center justify-between mb-8 md:mb-14 flex-wrap gap-3">
+      <span class="tag">Shopify Plus Partners · Est. 2019</span>
+      <span class="mono text-xs uppercase tracking-widest hidden md:inline-flex items-center gap-2">
+        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+        Accepting 3 projects · Q1 2025
+      </span>
+    </div>
+    <h1 class="display text-[16vw] md:text-[13vw] lg:text-[190px] leading-[0.82]">
+      Stores<br>
+      <span class="text-[var(--pop)]">that sell</span><br>
+      <span class="stroke-text">like crazy.</span>
+    </h1>
+    <div class="mt-10 md:mt-14 grid md:grid-cols-3 gap-8 items-end">
+      <div class="md:col-span-2 max-w-2xl">
+        <p class="text-lg md:text-2xl leading-snug font-medium">
+          We're the <span class="bg-[var(--ink)] text-[var(--lime)] px-2">Shopify</span> agency that builds, redesigns and maintains ecommerce stores obsessed with performance. Less template, more conversion.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#contact" class="btn-primary px-6 md:px-8 py-4 text-sm font-bold uppercase tracking-wider">Get a quote</a>
+          <a href="#work" class="btn-outline px-6 md:px-8 py-4 text-sm font-bold uppercase tracking-wider">See our work ↘</a>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4 md:gap-6">
+        <div class="border-2 border-black p-4 md:p-6 bg-[var(--bone)]">
+          <div class="display text-4xl md:text-5xl">+180</div>
+          <div class="mono text-[10px] md:text-xs uppercase mt-2 tracking-wider">Stores launched</div>
+        </div>
+        <div class="border-2 border-black p-4 md:p-6 bg-[var(--ink)] text-[var(--bone)]">
+          <div class="display text-4xl md:text-5xl text-[var(--lime)]">3.4×</div>
+          <div class="mono text-[10px] md:text-xs uppercase mt-2 tracking-wider">Avg. conversion lift</div>
+        </div>
+        <div class="border-2 border-black p-4 md:p-6 bg-[var(--pop)] text-[var(--bone)] col-span-2">
+          <div class="display text-4xl md:text-5xl">98/100</div>
+          <div class="mono text-[10px] md:text-xs uppercase mt-2 tracking-wider">Median Google PageSpeed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<section class="bg-[var(--ink)] text-[var(--bone)] border-y-2 border-black py-6 md:py-8">
+  <div class="marquee">
+    <div class="marquee-track">
+      <div class="flex items-center gap-14 px-7 display text-4xl md:text-6xl">
+        <span>Shopify Plus</span><span class="text-[var(--lime)]">✦</span>
+        <span>Headless</span><span class="text-[var(--pop)]">✦</span>
+        <span>Hydrogen</span><span class="text-[var(--lime)]">✦</span>
+        <span>Klaviyo</span><span class="text-[var(--pop)]">✦</span>
+        <span>Custom Apps</span><span class="text-[var(--lime)]">✦</span>
+        <span>CRO</span><span class="text-[var(--pop)]">✦</span>
+      </div>
+      <div class="flex items-center gap-14 px-7 display text-4xl md:text-6xl">
+        <span>Shopify Plus</span><span class="text-[var(--lime)]">✦</span>
+        <span>Headless</span><span class="text-[var(--pop)]">✦</span>
+        <span>Hydrogen</span><span class="text-[var(--lime)]">✦</span>
+        <span>Klaviyo</span><span class="text-[var(--pop)]">✦</span>
+        <span>Custom Apps</span><span class="text-[var(--lime)]">✦</span>
+        <span>CRO</span><span class="text-[var(--pop)]">✦</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="py-20 md:py-32 border-b-2 border-black">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-12 md:mb-20">
+      <div>
+        <span class="tag mb-4">01 — What we do</span>
+        <h2 class="display text-6xl md:text-8xl mt-4">Services<br><span class="text-[var(--pop)]">zero filler.</span></h2>
+      </div>
+      <p class="max-w-md text-base md:text-lg">Three core capabilities. One goal: turn traffic into recurring revenue with a store that's fast, scalable and easy to maintain.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- CARD 1 -->
+      <div class="card-hover border-2 border-black bg-[var(--bone)] p-8 md:p-10 flex flex-col justify-between min-h-[380px]">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="mono text-xs">/01</span>
+            <span class="display text-5xl text-[var(--pop)]">→</span>
+          </div>
+          <h3 class="display text-4xl md:text-5xl mt-8">Build<br>from scratch.</h3>
+        </div>
+        <div>
+          <p class="mt-6">Design, development and launch of your Shopify store. Custom theme, CRO-first architecture and everything ready to scale without fear.</p>
+          <div class="flex flex-wrap gap-2 mt-6 mono text-xs">
+            <span class="border border-black px-2 py-1">Liquid</span>
+            <span class="border border-black px-2 py-1">UX Research</span>
+            <span class="border border-black px-2 py-1">Branding</span>
+          </div>
+        </div>
+      </div>
+      <!-- CARD 2 -->
+      <div class="card-hover border-2 border-black bg-[var(--ink)] text-[var(--bone)] p-8 md:p-10 flex flex-col justify-between min-h-[380px]">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="mono text-xs text-[var(--lime)]">/02</span>
+            <span class="display text-5xl text-[var(--lime)]">↺</span>
+          </div>
+          <h3 class="display text-4xl md:text-5xl mt-8 text-[var(--lime)]">Redesign<br>what's broken.</h3>
+        </div>
+        <div>
+          <p class="mt-6">We audit your current store, kill the friction and rebuild it into a machine that converts. Speed, UX and revenue — measured before and after.</p>
+          <div class="flex flex-wrap gap-2 mt-6 mono text-xs">
+            <span class="border border-[var(--bone)] px-2 py-1">CRO Audit</span>
+            <span class="border border-[var(--bone)] px-2 py-1">Speed 90+</span>
+            <span class="border border-[var(--bone)] px-2 py-1">A/B Testing</span>
+          </div>
+        </div>
+      </div>
+      <!-- CARD 3 -->
+      <div class="card-hover border-2 border-black bg-[var(--pop)] text-[var(--bone)] p-8 md:p-10 flex flex-col justify-between min-h-[380px]">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="mono text-xs">/03</span>
+            <span class="display text-5xl">∞</span>
+          </div>
+          <h3 class="display text-4xl md:text-5xl mt-8">Maintain<br>& evolve.</h3>
+        </div>
+        <div>
+          <p class="mt-6">Monthly retainers: updates, new features, bug fixes and continuous optimization. Your store never sleeps — neither do we.</p>
+          <div class="flex flex-wrap gap-2 mt-6 mono text-xs">
+            <span class="border border-[var(--bone)] px-2 py-1">SLA 24h</span>
+            <span class="border border-[var(--bone)] px-2 py-1">Monitoring</span>
+            <span class="border border-[var(--bone)] px-2 py-1">Roadmap</span>
+          </div>
+        </div>
+      </div>
+      <!-- CARD 4 -->
+      <div class="card-hover border-2 border-black bg-[var(--lime)] p-8 md:p-10 flex flex-col justify-between min-h-[380px]">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="mono text-xs">/04</span>
+            <span class="display text-5xl">⚡</span>
+          </div>
+          <h3 class="display text-4xl md:text-5xl mt-8">Promos<br>& launches.</h3>
+        </div>
+        <div>
+          <p class="mt-6">Black Friday, drops, product launches. Campaign pages, countdowns and flows engineered to sell out — not slow down.</p>
+          <div class="flex flex-wrap gap-2 mt-6 mono text-xs">
+            <span class="border border-black px-2 py-1">Landing pages</span>
+            <span class="border border-black px-2 py-1">Email flows</span>
+            <span class="border border-black px-2 py-1">Drop mechanics</span>
+          </div>
+          <button data-page-link="launches" class="nav-page mt-6 btn-primary px-5 py-3 text-xs font-bold uppercase tracking-wider">Explore launches →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="py-20 md:py-32 bg-[var(--ink)] text-[var(--bone)] border-b-2 border-black">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-12 md:mb-20">
+      <div>
+        <span class="tag tag-lime text-[var(--bone)]">02 — Selected work</span>
+        <h2 class="display text-6xl md:text-8xl mt-4 text-[var(--bone)]">Proof,<br><span class="stroke-text-lime">not promises.</span></h2>
+      </div>
+      <p class="max-w-md text-base md:text-lg opacity-80">Real brands, real numbers. Every project ships with a scoreboard.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="rot-hover border-2 border-[var(--bone)] p-8 bg-[var(--ink)]">
+        <div class="mono text-xs text-[var(--lime)] uppercase tracking-widest">Fashion / DTC</div>
+        <h3 class="display text-4xl mt-4">VELA Studio</h3>
+        <p class="mt-4 opacity-80 text-sm">Full rebuild + headless storefront. Mobile checkout redesigned from zero.</p>
+        <div class="mt-8 pt-6 border-t border-[var(--bone)]/30 flex justify-between items-end">
+          <div><div class="display text-5xl text-[var(--lime)]">+212%</div><div class="mono text-[10px] uppercase mt-1">Revenue in 6 months</div></div>
+          <span class="text-2xl">↗</span>
+        </div>
+      </div>
+      <div class="rot-hover border-2 border-[var(--bone)] p-8 bg-[var(--pop)]">
+        <div class="mono text-xs uppercase tracking-widest">Supplements</div>
+        <h3 class="display text-4xl mt-4">RAWFUEL</h3>
+        <p class="mt-4 opacity-90 text-sm">Subscription-first redesign with custom bundle builder and retention flows.</p>
+        <div class="mt-8 pt-6 border-t border-[var(--bone)]/40 flex justify-between items-end">
+          <div><div class="display text-5xl">4.8×</div><div class="mono text-[10px] uppercase mt-1">Subscriber LTV</div></div>
+          <span class="text-2xl">↗</span>
+        </div>
+      </div>
+      <div class="rot-hover border-2 border-[var(--bone)] p-8 bg-[var(--lime)] text-[var(--ink)]">
+        <div class="mono text-xs uppercase tracking-widest">Sneakers / Drops</div>
+        <h3 class="display text-4xl mt-4">KICKDROP</h3>
+        <p class="mt-4 text-sm">Launch infrastructure for weekly drops. Zero downtime at 40k concurrent users.</p>
+        <div class="mt-8 pt-6 border-t border-black/30 flex justify-between items-end">
+          <div><div class="display text-5xl">12min</div><div class="mono text-[10px] uppercase mt-1">Avg. sell-out time</div></div>
+          <span class="text-2xl">↗</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="py-20 md:py-32 border-b-2 border-black">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10">
+    <span class="tag">03 — How we work</span>
+    <h2 class="display text-6xl md:text-8xl mt-4 mb-14 md:mb-20">Four steps.<br><span class="text-[var(--pop)]">No fluff.</span></h2>
+    <div class="grid md:grid-cols-4 gap-0 border-2 border-black divide-y-2 md:divide-y-0 md:divide-x-2 divide-black">
+      <div class="p-8 hover:bg-[var(--lime)] transition-colors group">
+        <div class="display text-7xl stroke-text group-hover:text-[var(--ink)] group-hover:[-webkit-text-stroke:0]">01</div>
+        <h3 class="display text-2xl mt-6">Audit &amp; strategy</h3>
+        <p class="mt-4 text-sm">We dig into your data, market and margins. You get a plan, not a pitch deck.</p>
+        <div class="mono text-xs mt-6 uppercase">Week 1</div>
+      </div>
+      <div class="p-8 hover:bg-[var(--lime)] transition-colors group">
+        <div class="display text-7xl stroke-text group-hover:text-[var(--ink)] group-hover:[-webkit-text-stroke:0]">02</div>
+        <h3 class="display text-2xl mt-6">Design sprint</h3>
+        <p class="mt-4 text-sm">High-fidelity, conversion-driven design. Every pixel earns its place.</p>
+        <div class="mono text-xs mt-6 uppercase">Weeks 2–3</div>
+      </div>
+      <div class="p-8 hover:bg-[var(--lime)] transition-colors group">
+        <div class="display text-7xl stroke-text group-hover:text-[var(--ink)] group-hover:[-webkit-text-stroke:0]">03</div>
+        <h3 class="display text-2xl mt-6">Build &amp; QA</h3>
+        <p class="mt-4 text-sm">Clean code, 90+ PageSpeed, tested on real devices. Then we launch.</p>
+        <div class="mono text-xs mt-6 uppercase">Weeks 4–6</div>
+      </div>
+      <div class="p-8 hover:bg-[var(--lime)] transition-colors group">
+        <div class="display text-7xl stroke-text group-hover:text-[var(--ink)] group-hover:[-webkit-text-stroke:0]">04</div>
+        <h3 class="display text-2xl mt-6">Grow &amp; maintain</h3>
+        <p class="mt-4 text-sm">Ongoing optimization, promos and launches. Your store keeps compounding.</p>
+        <div class="mono text-xs mt-6 uppercase">Forever</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-20 md:py-32 border-b-2 border-black">
+  <div class="max-w-[1000px] mx-auto px-5 md:px-10">
+    <span class="tag">04 — FAQ</span>
+    <h2 class="display text-6xl md:text-8xl mt-4 mb-12">Straight<br><span class="text-[var(--pop)]">answers.</span></h2>
+    <div class="space-y-4">
+      <details class="border-2 border-black bg-[var(--bone)] group">
+        <summary class="flex items-center justify-between cursor-pointer p-6 font-bold text-lg select-none">How long does a full store build take? <span class="plus display text-3xl text-[var(--pop)]">+</span></summary>
+        <p class="px-6 pb-6 -mt-2">Typically 4–6 weeks from kickoff to launch. Complex headless builds or custom apps can run 8–12 weeks. We fix the timeline before we start — and we hit it.</p>
+      </details>
+      <details class="border-2 border-black bg-[var(--bone)] group">
+        <summary class="flex items-center justify-between cursor-pointer p-6 font-bold text-lg select-none">What does a maintenance retainer include? <span class="plus display text-3xl text-[var(--pop)]">+</span></summary>
+        <p class="px-6 pb-6 -mt-2">A monthly bank of dev/design hours, 24h SLA on critical bugs, performance monitoring, app updates, and a quarterly CRO roadmap. Unused hours roll over.</p>
+      </details>
+      <details class="border-2 border-black bg-[var(--bone)] group">
+        <summary class="flex items-center justify-between cursor-pointer p-6 font-bold text-lg select-none">Can you run our Black Friday / product launch? <span class="plus display text-3xl text-[var(--pop)]">+</span></summary>
+        <p class="px-6 pb-6 -mt-2">Yes — it's one of our specialties. Campaign landing pages, countdowns, load testing, email/SMS flows and live support during the event. Check our <button data-page-link="promotions" class="nav-page underline font-bold text-[var(--pop)]">Promotions</button> and <button data-page-link="launches" class="nav-page underline font-bold text-[var(--pop)]">Launches</button> pages.</p>
+      </details>
+      <details class="border-2 border-black bg-[var(--bone)] group">
+        <summary class="flex items-center justify-between cursor-pointer p-6 font-bold text-lg select-none">Do you work with stores outside Shopify? <span class="plus display text-3xl text-[var(--pop)]">+</span></summary>
+        <p class="px-6 pb-6 -mt-2">We migrate them in. WooCommerce, Magento, custom stacks — we've moved 40+ stores to Shopify with zero SEO loss and full data integrity.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-20 md:py-32 bg-[var(--ink)] text-[var(--bone)]">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10 grid md:grid-cols-2 gap-12 md:gap-20">
+    <div>
+      <span class="tag tag-lime text-[var(--bone)]">05 — Contact</span>
+      <h2 class="display text-6xl md:text-8xl mt-4 text-[var(--bone)]">Let's build<br><span class="text-[var(--lime)]">your machine.</span></h2>
+      <p class="mt-8 text-lg opacity-80 max-w-md">Tell us about your store, your goals and your deadline. We answer within 24 hours — with substance, not a sales script.</p>
+      <div class="mt-10 space-y-3 mono text-sm">
+        <div>→ hello@northshop.agency</div>
+        <div>→ +1 (555) 019-2834</div>
+        <div>→ Remote-first · NYC / Berlin / CDMX</div>
+      </div>
+    </div>
+    <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Sent — talk soon ✦';" class="space-y-5 [&_input]:border-[var(--bone)] [&_textarea]:border-[var(--bone)] [&_select]:border-[var(--bone)]">
+      <div class="grid sm:grid-cols-2 gap-5">
+        <input required placeholder="Name" class="text-[var(--bone)]">
+        <input required type="email" placeholder="Email" class="text-[var(--bone)]">
+      </div>
+      <input placeholder="Store URL (if you have one)" class="text-[var(--bone)]">
+      <select class="text-[var(--bone)] bg-[var(--ink)]">
+        <option>I need — a new store</option>
+        <option>I need — a redesign</option>
+        <option>I need — ongoing maintenance</option>
+        <option>I need — a promo / launch campaign</option>
+      </select>
+      <textarea rows="4" placeholder="Tell us about the project…" class="text-[var(--bone)]"></textarea>
+      <button class="btn-invert w-full py-4 font-bold uppercase tracking-wider display text-xl">Send it →</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ PAGE: PROMOTIONS ============ -->
+<main id="page-promotions" class="page">
+<section class="relative pt-28 md:pt-36 pb-16 md:pb-20 overflow-hidden border-b-2 border-black bg-[var(--ink)] text-[var(--bone)]">
+  <div class="absolute -top-24 right-0 w-[420px] h-[420px] bg-[var(--pop)] rounded-full blob"></div>
+  <div class="relative max-w-[1400px] mx-auto px-5 md:px-10">
+    <span class="tag tag-lime text-[var(--bone)]">Promotions — limited offers</span>
+    <h1 class="display text-[15vw] md:text-[11vw] lg:text-[150px] mt-6">Deals with<br><span class="text-[var(--lime)]">real teeth.</span></h1>
+    <p class="mt-8 max-w-xl text-lg md:text-2xl opacity-80">Seasonal packages engineered for momentum. Each promo has fixed scope, fixed price and a hard deadline — like every good campaign should.</p>
+    <div class="mt-10 inline-flex items-center gap-4 border-2 border-[var(--lime)] px-6 py-4">
+      <span class="mono text-xs uppercase tracking-widest text-[var(--lime)]">Q1 offers end in</span>
+      <span id="promoCountdown" class="display text-3xl md:text-4xl ticker text-[var(--lime)]">00d 00h 00m 00s</span>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 md:py-28 border-b-2 border-black">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10">
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- PROMO 1 -->
+      <div class="card-hover border-2 border-black bg-[var(--bone)] p-8 flex flex-col">
+        <div class="flex justify-between items-start">
+          <span class="mono text-xs uppercase border border-black px-2 py-1">Best for new brands</span>
+          <span class="display text-2xl text-[var(--pop)]">-20%</span>
+        </div>
+        <h3 class="display text-4xl mt-8">Launch<br>Sprint.</h3>
+        <p class="mt-5 text-sm flex-1">Full Shopify store in 30 days. Custom theme, 15 products styled, checkout optimized, analytics wired.</p>
+        <div class="mt-8">
+          <div class="mono text-xs line-through opacity-50">$12,000</div>
+          <div class="display text-5xl">$9,600</div>
+        </div>
+        <button data-page-link="home" data-scroll="#contact" class="nav-page btn-primary mt-8 py-4 text-sm font-bold uppercase tracking-wider">Claim this promo →</button>
+      </div>
+      <!-- PROMO 2 (featured) -->
+      <div class="card-hover card-hover-lime border-2 border-black bg-[var(--ink)] text-[var(--bone)] p-8 flex flex-col relative">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[var(--pop)] text-[var(--bone)] mono text-xs uppercase tracking-widest px-4 py-1.5 border-2 border-black">Most popular</div>
+        <div class="flex justify-between items-start mt-2">
+          <span class="mono text-xs uppercase border border-[var(--bone)] px-2 py-1">Redesign special</span>
+          <span class="display text-2xl text-[var(--lime)]">-25%</span>
+        </div>
+        <h3 class="display text-4xl mt-8 text-[var(--lime)]">Speed &amp;<br>CRO Overhaul.</h3>
+        <p class="mt-5 text-sm flex-1 opacity-90">Full audit + redesign of your top 5 templates. Guaranteed 90+ PageSpeed and A/B tested checkout flow, or we keep working free.</p>
+        <div class="mt-8">
+          <div class="mono text-xs line-through opacity-50">$18,000</div>
+          <div class="display text-5xl text-[var(--lime)]">$13,500</div>
+        </div>
+        <button data-page-link="home" data-scroll="#contact" class="nav-page btn-invert mt-8 py-4 text-sm font-bold uppercase tracking-wider">Claim this promo →</button>
+      </div>
+      <!-- PROMO 3 -->
+      <div class="card-hover border-2 border-black bg-[var(--pop)] text-[var(--bone)] p-8 flex flex-col">
+        <div class="flex justify-between items-start">
+          <span class="mono text-xs uppercase border border-[var(--bone)] px-2 py-1">Retainer deal</span>
+          <span class="display text-2xl">2 mo free</span>
+        </div>
+        <h3 class="display text-4xl mt-8">Care Plan<br>Annual.</h3>
+        <p class="mt-5 text-sm flex-1">12 months of maintenance for the price of 10. 20 dev hours/month, 24h SLA, quarterly CRO roadmap and priority support.</p>
+        <div class="mt-8">
+          <div class="mono text-xs line-through opacity-60">$2,400/mo × 12</div>
+          <div class="display text-5xl">$24,000<span class="text-xl">/yr</span></div>
+        </div>
+        <button data-page-link="home" data-scroll="#contact" class="nav-page btn-outline !border-[var(--bone)] !text-[var(--bone)] hover:!bg-[var(--bone)] hover:!text-[var(--pop)] mt-8 py-4 text-sm font-bold uppercase tracking-wider">Claim this promo →</button>
+      </div>
+    </div>
+    <div class="mt-14 border-2 border-black bg-[var(--lime)] p-8 md:p-10 flex flex-wrap items-center justify-between gap-6">
+      <div>
+        <h3 class="display text-3xl md:text-4xl">Black Friday war room.</h3>
+        <p class="mt-3 max-w-lg text-sm md:text-base">Book your BFCM build before June and lock 2024 pricing. Load testing, campaign pages and live event support included.</p>
+      </div>
+      <button data-page-link="home" data-scroll="#contact" class="nav-page btn-primary px-8 py-4 text-sm font-bold uppercase tracking-wider">Reserve a slot →</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ PAGE: LAUNCHES ============ -->
+<main id="page-launches" class="page">
+<section class="relative pt-28 md:pt-36 pb-16 md:pb-20 overflow-hidden border-b-2 border-black">
+  <div class="absolute -top-24 -left-24 w-[420px] h-[420px] bg-[var(--violet)] rounded-full blob"></div>
+  <div class="relative max-w-[1400px] mx-auto px-5 md:px-10">
+    <span class="tag">Launches — drop engineering</span>
+    <h1 class="display text-[15vw] md:text-[11vw] lg:text-[150px] mt-6">Built to<br><span class="stroke-text">sell out.</span></h1>
+    <p class="mt-8 max-w-xl text-lg md:text-2xl">Product drops, collection launches and hype campaigns. We handle the tech, the pages and the pressure — you handle the champagne.</p>
+  </div>
+</section>
+
+<section class="py-20 md:py-28 bg-[var(--ink)] text-[var(--bone)] border-b-2 border-black">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-12">
+      <h2 class="display text-5xl md:text-7xl text-[var(--bone)]">Upcoming<br><span class="text-[var(--lime)]">client drops.</span></h2>
+      <p class="max-w-md opacity-80">Live launches we're engineering right now. Follow along — the numbers speak.</p>
+    </div>
+    <div class="space-y-0 border-2 border-[var(--bone)] divide-y-2 divide-[var(--bone)]">
+      <div class="grid md:grid-cols-12 gap-4 p-6 md:p-8 items-center hover:bg-[var(--bone)] hover:text-[var(--ink)] transition-colors group">
+        <div class="md:col-span-2 mono text-xs uppercase text-[var(--lime)] group-hover:text-[var(--pop)]">MAR 14</div>
+        <div class="md:col-span-4 display text-3xl">KICKDROP × NEON v2</div>
+        <div class="md:col-span-4 text-sm opacity-80">Limited sneaker drop · 5,000 units · queue system + bot protection</div>
+        <div class="md:col-span-2 text-right"><span class="mono text-xs border border-current px-3 py-1.5 uppercase">Waitlist open</span></div>
+      </div>
+      <div class="grid md:grid-cols-12 gap-4 p-6 md:p-8 items-center hover:bg-[var(--bone)] hover:text-[var(--ink)] transition-colors group">
+        <div class="md:col-span-2 mono text-xs uppercase text-[var(--lime)] group-hover:text-[var(--pop)]">APR 02</div>
+        <div class="md:col-span-4 display text-3xl">VELA Summer Capsule</div>
+        <div class="md:col-span-4 text-sm opacity-80">Fashion capsule launch · lookbook microsite + early-access flow</div>
+        <div class="md:col-span-2 text-right"><span class="mono text-xs border border-current px-3 py-1.5 uppercase">In build</span></div>
+      </div>
+      <div class="grid md:grid-cols-12 gap-4 p-6 md:p-8 items-center hover:bg-[var(--bone)] hover:text-[var(--ink)] transition-colors group">
+        <div class="md:col-span-2 mono text-xs uppercase text-[var(--lime)] group-hover:text-[var(--pop)]">APR 20</div>
+        <div class="md:col-span-4 display text-3xl">RAWFUEL Hydro Series</div>
+        <div class="md:col-span-4 text-sm opacity-80">New product line · bundle builder + subscription pre-orders</div>
+        <div class="md:col-span-2 text-right"><span class="mono text-xs border border-current px-3 py-1.5 uppercase">Pre-order live</span></div>
+      </div>
+      <div class="grid md:grid-cols-12 gap-4 p-6 md:p-8 items-center hover:bg-[var(--bone)] hover:text-[var(--ink)] transition-colors group">
+        <div class="md:col-span-2 mono text-xs uppercase text-[var(--lime)] group-hover:text-[var(--pop)]">MAY 08</div>
+        <div class="md:col-span-4 display text-3xl">ORBIT Home Launch</div>
+        <div class="md:col-span-4 text-sm opacity-80">Full brand launch · new Shopify Plus store · 3D product viewer</div>
+        <div class="md:col-span-2 text-right"><span class="mono text-xs border border-current px-3 py-1.5 uppercase">Coming soon</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 md:py-28 border-b-2 border-black">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10">
+    <h2 class="display text-5xl md:text-7xl mb-14">The launch<br><span class="text-[var(--pop)]">playbook.</span></h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="border-2 border-black p-8 card-hover bg-[var(--bone)]">
+        <div class="display text-6xl text-[var(--pop)]">T-30</div>
+        <h3 class="display text-2xl mt-6">Hype build.</h3>
+        <p class="mt-4 text-sm">Teaser landing page, waitlist capture, email/SMS warm-up flows and social countdown assets.</p>
+      </div>
+      <div class="border-2 border-black p-8 card-hover bg-[var(--ink)] text-[var(--bone)]">
+        <div class="display text-6xl text-[var(--lime)]">T-0</div>
+        <h3 class="display text-2xl mt-6 text-[var(--lime)]">Drop day.</h3>
+        <p class="mt-4 text-sm opacity-90">Load-tested infrastructure, queue &amp; bot protection, live monitoring and a war-room team on call.</p>
+      </div>
+      <div class="border-2 border-black p-8 card-hover bg-[var(--lime)]">
+        <div class="display text-6xl">T+7</div>
+        <h3 class="display text-2xl mt-6">Cash the data.</h3>
+        <p class="mt-4 text-sm">Post-launch report, restock strategy, winback flows and a roadmap for the next drop.</p>
+      </div>
+    </div>
+    <div class="mt-14 bg-[var(--ink)] text-[var(--bone)] border-2 border-black p-8 md:p-12 flex flex-wrap items-center justify-between gap-6">
+      <h3 class="display text-3xl md:text-5xl">Got a drop coming?<br><span class="text-[var(--lime)]">Don't launch alone.</span></h3>
+      <button data-page-link="home" data-scroll="#contact" class="nav-page btn-invert px-8 py-4 text-sm font-bold uppercase tracking-wider">Plan my launch →</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-[var(--ink)] text-[var(--bone)] border-t-2 border-black">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10 py-14">
+    <div class="display text-[13vw] md:text-[9vw] leading-none stroke-text-bone select-none">NORTH/SHOP</div>
+    <div class="mt-10 flex flex-wrap justify-between gap-8 items-end">
+      <div class="mono text-xs uppercase tracking-widest opacity-70">© 2025 North/Shop Agency · Shopify Plus Partners<br>Built fast. Ships faster.</div>
+      <nav class="flex flex-wrap gap-6 text-sm font-medium">
+        <button data-page-link="home" class="nav-page hover:text-[var(--lime)]">Home</button>
+        <button data-page-link="promotions" class="nav-page hover:text-[var(--lime)]">Promotions</button>
+        <button data-page-link="launches" class="nav-page hover:text-[var(--lime)]">Launches</button>
+        <a href="#contact" data-page-link="home" class="nav-page hover:text-[var(--lime)]">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ---- Simple page router ----
+const pages = ['home','promotions','launches'];
+function showPage(name, scrollTarget){
+  pages.forEach(p=>{
+    document.getElementById('page-'+p).classList.toggle('active', p===name);
+  });
+  document.querySelectorAll('.nav-link').forEach(l=>{
+    l.classList.toggle('active', l.dataset.pageLink===name);
+  });
+  document.getElementById('mobileMenu').classList.add('hidden');
+  if(scrollTarget){
+    requestAnimationFrame(()=>{
+      const el=document.querySelector(scrollTarget);
+      if(el) el.scrollIntoView({behavior:'smooth'});
+      else window.scrollTo({top:0,behavior:'smooth'});
+    });
+  } else {
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+}
+document.querySelectorAll('.nav-page').forEach(el=>{
+  el.addEventListener('click', e=>{
+    const target = el.dataset.pageLink;
+    const href = el.getAttribute('href');
+    const explicitScroll = el.dataset.scroll;
+    const scrollTo = explicitScroll || (href && href.startsWith('#') && href.length>1 ? href : null);
+    e.preventDefault();
+    showPage(target, scrollTo);
+  });
+});
+// ---- Mobile menu ----
+document.getElementById('menuBtn').addEventListener('click', ()=>{
+  document.getElementById('mobileMenu').classList.toggle('hidden');
+});
+// ---- Promo countdown (ends in ~21 days from now) ----
+const end = Date.now() + 21*24*60*60*1000 + 7*60*60*1000;
+const cd = document.getElementById('promoCountdown');
+function pad(n){return String(n).padStart(2,'0');}
+setInterval(()=>{
+  let diff = Math.max(0, end - Date.now());
+  const d = Math.floor(diff/86400000); diff%=86400000;
+  const h = Math.floor(diff/3600000); diff%=3600000;
+  const m = Math.floor(diff/60000); diff%=60000;
+  const s = Math.floor(diff/1000);
+  if(cd) cd.textContent = `${pad(d)}d ${pad(h)}h ${pad(m)}m ${pad(s)}s`;
+},1000);
+</script>
+</body>
+</html>
