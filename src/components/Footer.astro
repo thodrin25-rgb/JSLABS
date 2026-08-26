@@ -4,9 +4,13 @@ const year = new Date().getFullYear();
 
 <footer class="bg-[var(--ink)] text-[var(--bone)] border-t-2 border-black">
   <div class="max-w-[1400px] mx-auto px-5 md:px-10 py-14">
-    <div class="display text-[13vw] md:text-[9vw] leading-none stroke-text-bone select-none" aria-label="North Shop">NORTH/SHOP</div>
+    <span class="brand-wordmark brand-wordmark--footer" role="img" aria-label="North Shop">
+      <img src="/brand/northshop-logo.svg" alt="" width="1536" height="1024" loading="lazy" />
+    </span>
     <div class="mt-10 flex flex-wrap justify-between gap-8 items-end">
-      <p class="mono text-xs uppercase tracking-widest opacity-70">© {year} North/Shop Agency · Shopify Plus Partners<br />Built fast. Ships faster.</p>
+      <p class="mono text-xs uppercase tracking-widest opacity-70">
+        © {year} North/Shop Agency · Shopify Plus Partners<br />Built fast. Ships faster.
+      </p>
       <nav class="flex flex-wrap gap-6 text-sm font-medium" aria-label="Footer navigation">
         <a href="/" class="hover:text-[var(--lime)]">Home</a>
         <a href="/promotions" class="hover:text-[var(--lime)]">Promotions</a>

@@ -19,6 +19,12 @@ Genera una versión optimizada para producción y comprueba tipos con:
 pnpm build
 ```
 
+El formateo se ejecuta automáticamente antes de cada commit. También puedes ejecutar:
+
+```powershell
+pnpm format
+```
+
 ## SEO y despliegue
 
 Antes de publicar, define `SITE_URL` con el dominio final (hay una plantilla en `.env.example`).
