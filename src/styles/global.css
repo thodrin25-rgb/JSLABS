@@ -50,6 +50,85 @@ body {
     transform: translateX(-50%);
   }
 }
+.focus-stage {
+  display: grid;
+  min-height: clamp(9rem, 16vw, 13rem);
+  overflow: hidden;
+  position: relative;
+}
+.focus-item {
+  align-items: center;
+  animation: focus-cycle 16s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  animation-delay: calc(var(--focus-index) * 4s);
+  display: grid;
+  gap: 1rem;
+  grid-area: 1 / 1;
+  grid-template-columns: 3rem 1fr;
+  min-width: 0;
+  opacity: 0;
+  transform: translateY(2rem);
+}
+.focus-number {
+  align-self: start;
+  color: var(--focus-color);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding-top: 0.5rem;
+}
+.focus-title {
+  color: var(--focus-color);
+  font-size: clamp(2.75rem, 11vw, 8.5rem);
+  line-height: 0.82;
+}
+.focus-detail {
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 600;
+  margin-top: 1rem;
+}
+.focus-progress {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+.focus-progress > span {
+  background: rgb(244 242 236 / 0.2);
+  height: 2px;
+  overflow: hidden;
+}
+.focus-progress i {
+  animation: focus-progress 16s linear infinite;
+  animation-delay: calc(var(--focus-index) * 4s);
+  background: var(--lime);
+  display: block;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+@keyframes focus-cycle {
+  0%,
+  25% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  27%,
+  100% {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+}
+@keyframes focus-progress {
+  0% {
+    transform: scaleX(0);
+  }
+  25% {
+    transform: scaleX(1);
+  }
+  27%,
+  100% {
+    transform: scaleX(0);
+  }
+}
 .card-hover {
   transition:
     transform 0.4s cubic-bezier(0.2, 0.9, 0.2, 1),
@@ -239,4 +318,24 @@ select:focus {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+  .focus-stage {
+    gap: 1rem;
+    min-height: auto;
+    overflow: visible;
+  }
+  .focus-item {
+    animation: none !important;
+    border-top: 1px solid rgb(244 242 236 / 0.25);
+    grid-area: auto;
+    opacity: 1;
+    padding-top: 1rem;
+    transform: none;
+  }
+  .focus-title {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+  }
+  .focus-progress {
+    display: none;
+  }
 }
+
