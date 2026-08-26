@@ -152,6 +152,55 @@ section {
 .ticker {
   font-variant-numeric: tabular-nums;
 }
+.brand-wordmark,
+.brand-mark {
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+.brand-wordmark {
+  aspect-ratio: 4.31;
+}
+.brand-wordmark img,
+.brand-mark img {
+  height: auto;
+  max-width: none;
+  position: absolute;
+}
+.brand-wordmark img {
+  left: -13.2%;
+  top: -124%;
+  width: 128%;
+}
+.brand-wordmark--header {
+  display: none;
+  height: 2.25rem;
+  width: 9.75rem;
+}
+.brand-wordmark--footer {
+  max-width: 40rem;
+  width: 100%;
+}
+.brand-wordmark--footer img {
+  filter: invert(1);
+}
+.brand-mark {
+  height: 2.25rem;
+  width: 2.25rem;
+}
+.brand-mark img {
+  left: -55%;
+  top: -123%;
+  width: 550%;
+}
+@media (min-width: 640px) {
+  .brand-wordmark--header {
+    display: block;
+  }
+  .brand-mark {
+    display: none;
+  }
+}
 input,
 textarea,
 select {

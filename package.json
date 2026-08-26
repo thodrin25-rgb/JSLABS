@@ -27,6 +27,6 @@
     "typescript": "^6.0.3"
   },
   "lint-staged": {
-    "*.{astro,css,js,mjs,json,md,svg,yaml,yml}": "prettier --write"
+    "*.{astro,css,js,mjs,json,md,yaml,yml}": "prettier --write"
   }
 }
