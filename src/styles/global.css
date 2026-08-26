@@ -18,11 +18,12 @@ html {
   background: var(--bone);
   color: var(--ink);
   font-family: 'Space Grotesk', sans-serif;
+  overflow-x: clip;
   scroll-behavior: smooth;
 }
 body {
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 .display {
   font-family: 'Archivo Black', sans-serif;
