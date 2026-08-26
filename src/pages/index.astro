@@ -1,12 +1,522 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { legacyContent } from '../lib/legacy-content';
 
-const title = 'North/Shop — Shopify agency for high-converting stores';
+const title = 'Shopify Conversion Sprint | North/Shop';
 const description =
-  'North/Shop designs, builds and optimizes high-performance Shopify stores for ambitious ecommerce brands.';
+  'Fix the biggest conversion blockers in your Shopify store in 7 business days. A focused $750 sprint for product pages, mobile UX and performance.';
+
+const issues = [
+  'Product pages that look good but do not answer buying questions',
+  'Mobile layouts that hide key information or actions',
+  'Slow pages caused by oversized media, scripts or app clutter',
+  'Navigation that makes products harder to discover',
+  'Weak shipping, returns or trust information near the buying decision',
+  'Analytics gaps that make improvements difficult to evaluate',
+];
+
+const deliverables = [
+  {
+    number: '01',
+    title: 'Recorded conversion audit',
+    body: 'A concise walkthrough of the customer journey, with the most important problems ranked by impact and effort.',
+  },
+  {
+    number: '02',
+    title: 'Five priority fixes',
+    body: 'Implementation of up to five agreed changes within your current theme, focused on reducing buying friction.',
+  },
+  {
+    number: '03',
+    title: 'One product page optimization',
+    body: 'Improvements to hierarchy, product information, calls to action and trust signals on one priority template.',
+  },
+  {
+    number: '04',
+    title: 'Mobile usability pass',
+    body: 'Review and correction of the key mobile interactions affecting discovery, evaluation and add to cart.',
+  },
+  {
+    number: '05',
+    title: 'Performance and analytics check',
+    body: 'A practical review of obvious performance bottlenecks and the essential tracking needed to evaluate improvements.',
+  },
+  {
+    number: '06',
+    title: 'QA and handoff',
+    body: 'Testing across current browsers and common screen sizes, a summary of the work and one round of revisions.',
+  },
+];
+
+const outcomes = [
+  'A prioritized record of the issues found',
+  'Five agreed storefront improvements implemented',
+  'A stronger priority product page',
+  'A cleaner mobile buying experience',
+  'Tested changes in a duplicate theme',
+  'A practical list of next-step opportunities',
+];
+
+const process = [
+  {
+    number: '01',
+    title: 'Request a review',
+    body: 'Send your store URL and the journey you want to improve. You will get a personal response and one initial observation before booking anything.',
+  },
+  {
+    number: '02',
+    title: 'Set the priority',
+    body: 'On a 15-minute call, we confirm the product or journey that matters most, the scope and the access or assets needed.',
+  },
+  {
+    number: '03',
+    title: 'Audit and implement',
+    body: 'After the initial payment and collaborator access, we agree on the five priority fixes and implement them in a duplicate theme.',
+  },
+  {
+    number: '04',
+    title: 'Review and publish',
+    body: 'You receive a walkthrough, one revision round and a tested theme ready to publish after your final approval.',
+  },
+];
+
+const goodFit = [
+  'You already have a live Shopify store and active traffic',
+  'You have one product or collection you want to improve',
+  'You see friction but are unsure what to fix first',
+  'You want implementation—not another generic audit',
+  'You can provide timely access, feedback and brand assets',
+];
+
+const notFit = [
+  'You need a new brand, complete store or custom theme',
+  'You have not launched or generated meaningful traffic yet',
+  'You need major custom app or backend development',
+  'You expect a guaranteed conversion or revenue increase',
+  'You need more than five changes within the seven-day scope',
+];
+
+const faqs = [
+  {
+    question: 'What can be completed in seven business days?',
+    answer:
+      'The sprint covers a recorded audit, one priority product-page optimization and up to five agreed improvements within your existing Shopify theme. The exact changes are confirmed before implementation so the scope and deadline stay clear.',
+  },
+  {
+    question: 'What counts as one fix?',
+    answer:
+      'A fix is one defined change to an existing page, section or storefront behavior—for example, improving the mobile add-to-cart area or clarifying shipping information on the product page. Large new features, full templates and work requiring custom apps are scoped separately.',
+  },
+  {
+    question: 'Will this increase my conversion rate?',
+    answer:
+      'The work is designed to remove observable buying friction, but no responsible partner can guarantee a conversion percentage. Traffic quality, your offer, price and product demand also affect the result. Every change is documented so you can evaluate performance with real store data.',
+  },
+  {
+    question: 'Do you need my Shopify password?',
+    answer:
+      'No. North/Shop requests access through a Shopify collaborator account and only asks for the permissions required for the sprint. Work is completed in a duplicate theme, and nothing is published without your approval.',
+  },
+  {
+    question: 'What happens if you find a bigger problem?',
+    answer:
+      'You will get a clear explanation of the issue and the safest next step. A major rebuild will not be forced into a one-week scope, and North/Shop will not patch over a problem that needs a more considered solution.',
+  },
+  {
+    question: 'How does payment work?',
+    answer:
+      'The sprint is $750 USD. A 50% initial payment reserves the project, and the remaining 50% is due after the review round and before the approved changes are published. Payment fees and paid third-party tools are confirmed in writing before work begins.',
+  },
+  {
+    question: 'Where is North/Shop based?',
+    answer:
+      'North/Shop is based in Bolivia and works remotely with U.S. brands, with reliable overlap across U.S. business hours. Scope, milestones, communication and approvals are documented from the start, so you always know what happens next.',
+  },
+  {
+    question: 'What if the sprint is not right for my store?',
+    answer:
+      'You will know before you pay. If the store needs a full rebuild, a different specialist or more data before changes make sense, you will get an honest recommendation instead of a forced sale.',
+  },
+];
 ---
 
-<BaseLayout {title} {description} schema="organization">
-  <main set:html={legacyContent('home')} />
+<BaseLayout
+  {title}
+  {description}
+  schema="service"
+  offer={{ name: 'Shopify Conversion Sprint', price: '750', currency: 'USD' }}
+>
+  <main>
+    <section class="relative overflow-hidden border-b-2 border-black pt-28 pb-16 md:pt-40 md:pb-24">
+      <div class="blob absolute -right-24 top-24 h-72 w-72 rounded-full bg-[var(--lime)]" aria-hidden="true"></div>
+      <div class="blob absolute -left-24 bottom-0 h-56 w-56 rounded-full bg-[var(--pop)]" aria-hidden="true"></div>
+      <div class="relative mx-auto grid max-w-[1400px] gap-12 px-5 md:px-10 lg:grid-cols-[1fr_340px] lg:items-end">
+        <div>
+          <span class="tag">Shopify conversion sprint · 7 business days</span>
+          <h1 class="display mt-7 max-w-5xl text-[15vw] leading-[0.83] sm:text-[11vw] lg:text-[7.5rem]">
+            Make your store <span class="text-[var(--pop)]">easier to buy from.</span>
+          </h1>
+          <p class="mt-8 max-w-3xl text-lg leading-relaxed md:text-2xl">
+            North/Shop finds and fixes the biggest conversion blockers in your Shopify store—especially on mobile and
+            product pages—without putting you through a full redesign or a long-term contract.
+          </p>
+          <div class="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <a href="#contact" class="btn-primary px-7 py-4 text-center text-sm font-bold uppercase tracking-wider">
+              Request a free store review <span aria-hidden="true">→</span>
+            </a>
+            <a href="#sprint" class="btn-outline px-7 py-4 text-center text-sm font-bold uppercase tracking-wider">
+              See what’s included <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+          <p class="mono mt-5 text-xs uppercase tracking-wider opacity-65">
+            For Shopify brands already driving traffic and sales.
+          </p>
+        </div>
+
+        <aside class="relative border-2 border-black bg-[var(--lime)] p-7 shadow-[12px_12px_0_var(--ink)] lg:rotate-2">
+          <p class="mono text-xs font-bold uppercase tracking-widest">Fixed-scope sprint</p>
+          <p class="display mt-5 text-7xl">$750</p>
+          <p class="mt-3 text-lg font-semibold">One clear priority. Seven business days.</p>
+          <div class="mt-6 border-t-2 border-black pt-5 text-sm leading-relaxed">
+            50% to reserve the sprint<br />50% before approved changes go live
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <div
+      class="marquee border-b-2 border-black bg-[var(--ink)] py-4 text-[var(--bone)]"
+      aria-label="Sprint focus areas"
+    >
+      <div class="marquee-track display text-2xl md:text-3xl">
+        <span class="px-5"
+          >PRODUCT PAGES <span class="text-[var(--lime)]">✦</span> MOBILE UX <span class="text-[var(--pop)]">✦</span> PERFORMANCE
+          <span class="text-[var(--lime)]">✦</span> ANALYTICS <span class="text-[var(--pop)]">✦</span>&nbsp;</span
+        >
+        <span class="px-5" aria-hidden="true"
+          >PRODUCT PAGES <span class="text-[var(--lime)]">✦</span> MOBILE UX <span class="text-[var(--pop)]">✦</span> PERFORMANCE
+          <span class="text-[var(--lime)]">✦</span> ANALYTICS <span class="text-[var(--pop)]">✦</span>&nbsp;</span
+        >
+      </div>
+    </div>
+
+    <section class="border-b-2 border-black py-20 md:py-28">
+      <div class="mx-auto grid max-w-[1400px] gap-12 px-5 md:px-10 lg:grid-cols-2 lg:gap-24">
+        <div>
+          <span class="tag">Good products still lose sales to bad friction</span>
+          <h2 class="display mt-5 text-5xl sm:text-6xl md:text-7xl">Your traffic should not fight your storefront.</h2>
+          <p class="mt-7 max-w-xl text-lg leading-relaxed">
+            A slow mobile page. A buried add-to-cart button. Missing product details. Too many apps competing for
+            attention. Each one gives a shopper another reason to hesitate—and makes every visit you paid for work
+            harder than it should.
+          </p>
+          <p class="mt-5 max-w-xl text-lg font-semibold">
+            You may not need a new theme. You need to find the moments creating doubt and fix the right ones first.
+          </p>
+        </div>
+        <ul class="grid content-start gap-0 border-2 border-black bg-white" aria-label="Common storefront issues">
+          {
+            issues.map((issue, index) => (
+              <li class="flex gap-4 border-b-2 border-black p-5 last:border-b-0 md:p-6">
+                <span class="mono font-bold text-[var(--pop)]">0{index + 1}</span>
+                <span class="font-medium">{issue}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section id="sprint" class="border-b-2 border-black bg-white py-20 md:py-28">
+      <div class="mx-auto max-w-[1400px] px-5 md:px-10">
+        <div class="grid gap-10 lg:grid-cols-[1fr_380px] lg:items-end">
+          <div>
+            <span class="tag">One week · One clear priority</span>
+            <h2 class="display mt-5 max-w-4xl text-6xl md:text-8xl">
+              The Shopify <span class="text-[var(--violet)]">Conversion Sprint.</span>
+            </h2>
+          </div>
+          <p class="text-lg leading-relaxed">
+            A focused audit and implementation sprint for brands that want meaningful storefront improvements without an
+            open-ended engagement. We agree on the priority first and give you a clear record of what changed.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {
+            deliverables.map((item) => (
+              <article class="card-hover border-2 border-black bg-[var(--bone)] p-7">
+                <span class="mono text-sm font-bold text-[var(--pop)]">{item.number}</span>
+                <h3 class="display mt-10 text-3xl">{item.title}</h3>
+                <p class="mt-5 leading-relaxed opacity-80">{item.body}</p>
+              </article>
+            ))
+          }
+        </div>
+
+        <div class="mt-10 grid border-2 border-black bg-[var(--lime)] lg:grid-cols-[1fr_auto] lg:items-center">
+          <div class="p-7 md:p-10">
+            <p class="mono text-xs font-bold uppercase tracking-widest">Investment</p>
+            <div class="mt-3 flex flex-wrap items-end gap-x-5 gap-y-2">
+              <p class="display text-7xl md:text-8xl">$750</p>
+              <p class="pb-2 text-lg font-bold">USD · Fixed scope</p>
+            </div>
+            <p class="mt-5 max-w-3xl text-sm leading-relaxed">
+              App subscriptions, paid themes, new photography, full rebrands and custom app development are not
+              included. Nothing is published without your approval.
+            </p>
+          </div>
+          <a
+            href="#contact"
+            class="m-7 mt-0 bg-[var(--ink)] px-8 py-5 text-center text-sm font-bold uppercase tracking-wider text-[var(--bone)] transition hover:bg-[var(--violet)] lg:m-10 lg:ml-0"
+          >
+            Check if your store is a fit →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b-2 border-black bg-[var(--ink)] py-20 text-[var(--bone)] md:py-28">
+      <div class="mx-auto grid max-w-[1400px] gap-12 px-5 md:px-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
+        <div>
+          <span class="tag tag-lime">What you leave with</span>
+          <h2 class="display mt-5 text-6xl md:text-8xl">
+            Fewer guesses. <span class="text-[var(--lime)]">Better decisions.</span>
+          </h2>
+          <p class="mt-7 max-w-xl text-lg leading-relaxed opacity-80">
+            By the end of the sprint, your highest-priority storefront friction is documented, the agreed improvements
+            are implemented and your team knows what to address next. No vague recommendations deck. No disappearing
+            after the audit.
+          </p>
+        </div>
+        <div>
+          <ul class="grid gap-4 sm:grid-cols-2">
+            {
+              outcomes.map((outcome) => (
+                <li class="flex min-h-28 items-start gap-4 border-2 border-[var(--bone)] p-5">
+                  <span class="text-[var(--lime)]" aria-hidden="true">
+                    ✦
+                  </span>
+                  <span class="font-semibold">{outcome}</span>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="mono mt-7 text-xs leading-relaxed uppercase tracking-wider opacity-60">
+            Conversion also depends on your offer, traffic, pricing and product demand. North/Shop does not promise a
+            revenue percentage—only clear scope, careful execution and work you can inspect and measure.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="border-b-2 border-black py-20 md:py-28">
+      <div class="mx-auto max-w-[1400px] px-5 md:px-10">
+        <span class="tag">A simple, visible process</span>
+        <h2 class="display mt-5 max-w-5xl text-6xl md:text-8xl">From store review to tested improvements in 7 days.</h2>
+        <div class="mt-14 grid border-l-2 border-t-2 border-black md:grid-cols-2 lg:grid-cols-4">
+          {
+            process.map((step) => (
+              <article class="border-r-2 border-b-2 border-black p-6 md:p-8">
+                <span class="display text-5xl text-[var(--pop)]">{step.number}</span>
+                <h3 class="mt-8 text-xl font-bold">{step.title}</h3>
+                <p class="mt-4 leading-relaxed opacity-75">{step.body}</p>
+              </article>
+            ))
+          }
+        </div>
+        <div class="mt-8 border-2 border-black bg-[var(--lime)] p-5 font-semibold md:p-7">
+          Your password is never requested. Access is handled through an authorized Shopify collaborator account, and
+          nothing goes live without your approval.
+        </div>
+      </div>
+    </section>
+
+    <section id="fit" class="border-b-2 border-black bg-white py-20 md:py-28">
+      <div class="mx-auto max-w-[1400px] px-5 md:px-10">
+        <span class="tag">Is this sprint for you?</span>
+        <h2 class="display mt-5 max-w-5xl text-6xl md:text-8xl">The best fit is a live store with a clear priority.</h2>
+        <div class="mt-14 grid border-2 border-black lg:grid-cols-2">
+          <div class="bg-[var(--lime)] p-7 md:p-10 lg:border-r-2 lg:border-black">
+            <h3 class="display text-4xl md:text-5xl">This is a strong fit if:</h3>
+            <ul class="mt-8 space-y-5">
+              {
+                goodFit.map((item) => (
+                  <li class="flex gap-4 font-semibold">
+                    <>
+                      <span aria-hidden="true">✓</span>
+                      <span>{item}</span>
+                    </>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <div class="bg-[var(--bone)] p-7 md:p-10">
+            <h3 class="display text-4xl md:text-5xl">Probably not a fit if:</h3>
+            <ul class="mt-8 space-y-5">
+              {
+                notFit.map((item) => (
+                  <li class="flex gap-4">
+                    <>
+                      <span class="text-[var(--pop)]" aria-hidden="true">
+                        ×
+                      </span>
+                      <span>{item}</span>
+                    </>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+        <div
+          class="mt-8 flex flex-col items-start justify-between gap-5 border-b-2 border-black pb-8 sm:flex-row sm:items-center"
+        >
+          <p class="text-lg font-semibold">
+            Not sure which side you are on? Send the store. If the sprint is not right, we will say so.
+          </p>
+          <a href="#contact" class="shrink-0 font-bold text-[var(--violet)] underline decoration-2 underline-offset-4"
+            >Request a free review →</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="border-b-2 border-black py-20 md:py-28">
+      <div class="mx-auto grid max-w-[1400px] gap-12 px-5 md:px-10 lg:grid-cols-[0.65fr_1fr] lg:gap-24">
+        <div>
+          <span class="tag">FAQ</span>
+          <h2 class="display mt-5 text-6xl md:text-8xl">Clear before we start.</h2>
+          <p class="mt-7 max-w-md text-lg leading-relaxed">
+            Scope, access, payment and expectations are agreed in writing before work begins.
+          </p>
+        </div>
+        <div class="border-t-2 border-black">
+          {
+            faqs.map((faq) => (
+              <details class="group border-b-2 border-black">
+                <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-lg font-bold md:text-xl">
+                  {faq.question}
+                  <span class="plus shrink-0 text-2xl text-[var(--pop)]" aria-hidden="true">
+                    +
+                  </span>
+                </summary>
+                <p class="max-w-3xl pb-7 pr-10 leading-relaxed opacity-75">{faq.answer}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="bg-[var(--ink)] py-20 text-[var(--bone)] md:py-28">
+      <div class="mx-auto grid max-w-[1400px] gap-14 px-5 md:px-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
+        <div>
+          <span class="tag tag-lime">Start with the store you have</span>
+          <h2 class="display mt-5 text-6xl md:text-8xl">
+            You may need <span class="text-[var(--lime)]">five better decisions.</span>
+          </h2>
+          <p class="mt-7 max-w-xl text-lg leading-relaxed opacity-80">
+            Send your Shopify URL and the product or journey you want to improve. You will get a personal first
+            observation and a clear answer on whether the seven-day sprint is the right next step.
+          </p>
+          <div class="mono mt-8 space-y-2 text-xs uppercase tracking-wider opacity-65">
+            <p>No obligation</p>
+            <p>No generic proposal</p>
+            <p>No long-term contract</p>
+          </div>
+        </div>
+
+        <form id="store-review-form" class="dark-form space-y-5" aria-describedby="form-note form-status">
+          <div>
+            <label for="name" class="mono mb-2 block text-xs uppercase tracking-wider">Name</label>
+            <input id="name" name="name" required autocomplete="name" class="border-[var(--bone)] text-[var(--bone)]" />
+          </div>
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="email" class="mono mb-2 block text-xs uppercase tracking-wider">Work email</label>
+              <input
+                id="email"
+                name="email"
+                required
+                type="email"
+                autocomplete="email"
+                class="border-[var(--bone)] text-[var(--bone)]"
+              />
+            </div>
+            <div>
+              <label for="store" class="mono mb-2 block text-xs uppercase tracking-wider">Shopify store URL</label>
+              <input
+                id="store"
+                name="store"
+                required
+                type="url"
+                inputmode="url"
+                placeholder="https://"
+                class="border-[var(--bone)] text-[var(--bone)]"
+              />
+            </div>
+          </div>
+          <div>
+            <label for="goal" class="mono mb-2 block text-xs uppercase tracking-wider"
+              >What are you trying to improve?</label
+            >
+            <textarea id="goal" name="goal" required rows="4" class="border-[var(--bone)] text-[var(--bone)]"
+            ></textarea>
+          </div>
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="priority" class="mono mb-2 block text-xs uppercase tracking-wider"
+                >Priority product <span class="opacity-55">(optional)</span></label
+              >
+              <input id="priority" name="priority" class="border-[var(--bone)] text-[var(--bone)]" />
+            </div>
+            <div>
+              <label for="deadline" class="mono mb-2 block text-xs uppercase tracking-wider"
+                >Deadline <span class="opacity-55">(optional)</span></label
+              >
+              <input id="deadline" name="deadline" class="border-[var(--bone)] text-[var(--bone)]" />
+            </div>
+          </div>
+          <button type="submit" class="btn-invert w-full px-8 py-5 text-sm font-bold uppercase tracking-wider">
+            Request my store review →
+          </button>
+          <p id="form-note" class="text-xs leading-relaxed opacity-60">
+            Submitting opens your email app with the request ready to send. Your information is only used to review and
+            respond to your inquiry.
+          </p>
+          <p id="form-status" class="mono text-xs uppercase tracking-wider text-[var(--lime)]" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const form = document.querySelector<HTMLFormElement>('#store-review-form');
+    const status = document.querySelector<HTMLElement>('#form-status');
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const data = new FormData(form);
+      const store = String(data.get('store') ?? 'Shopify store');
+      const subject = encodeURIComponent(`Shopify store review request — ${store}`);
+      const body = encodeURIComponent(
+        [
+          `Name: ${data.get('name') ?? ''}`,
+          `Email: ${data.get('email') ?? ''}`,
+          `Store: ${store}`,
+          `Priority product: ${data.get('priority') || 'Not specified'}`,
+          `Deadline: ${data.get('deadline') || 'Not specified'}`,
+          '',
+          'What I want to improve:',
+          String(data.get('goal') ?? ''),
+        ].join('\n'),
+      );
+
+      if (status) status.textContent = 'Opening your email app…';
+      window.location.href = `mailto:hello@northshop.agency?subject=${subject}&body=${body}`;
+    });
+  </script>
 </BaseLayout>
