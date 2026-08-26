@@ -14,6 +14,33 @@ const issues = [
   'Analytics gaps that make improvements difficult to evaluate',
 ];
 
+const focusAreas = [
+  {
+    number: '01',
+    title: 'Product pages',
+    detail: 'Clarify the buying decision',
+    color: 'var(--pop)',
+  },
+  {
+    number: '02',
+    title: 'Mobile UX',
+    detail: 'Remove friction on every screen',
+    color: 'var(--lime)',
+  },
+  {
+    number: '03',
+    title: 'Performance',
+    detail: 'Keep every visit moving',
+    color: 'var(--bone)',
+  },
+  {
+    number: '04',
+    title: 'Analytics',
+    detail: 'Measure what actually changes',
+    color: '#a995ff',
+  },
+];
+
 const deliverables = [
   {
     number: '01',
@@ -183,21 +210,45 @@ const faqs = [
       </div>
     </section>
 
-    <div
-      class="marquee border-b-2 border-black bg-[var(--ink)] py-4 text-[var(--bone)]"
-      aria-label="Sprint focus areas"
-    >
-      <div class="marquee-track display text-2xl md:text-3xl">
-        <span class="px-5"
-          >PRODUCT PAGES <span class="text-[var(--lime)]">✦</span> MOBILE UX <span class="text-[var(--pop)]">✦</span> PERFORMANCE
-          <span class="text-[var(--lime)]">✦</span> ANALYTICS <span class="text-[var(--pop)]">✦</span>&nbsp;</span
-        >
-        <span class="px-5" aria-hidden="true"
-          >PRODUCT PAGES <span class="text-[var(--lime)]">✦</span> MOBILE UX <span class="text-[var(--pop)]">✦</span> PERFORMANCE
-          <span class="text-[var(--lime)]">✦</span> ANALYTICS <span class="text-[var(--pop)]">✦</span>&nbsp;</span
-        >
+    <section id="focus" class="focus-sequence border-b-2 border-black bg-[var(--ink)] text-[var(--bone)]">
+      <div
+        class="mx-auto grid max-w-[1400px] gap-7 px-5 py-7 md:px-10 md:py-10 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-12"
+      >
+        <div class="flex items-start justify-between gap-6 lg:block">
+          <div>
+            <p class="mono text-xs font-bold uppercase tracking-[0.2em] text-[var(--lime)]">Sprint focus</p>
+            <p class="mt-2 max-w-48 text-sm leading-relaxed opacity-65">Four connected levers. One focused sprint.</p>
+          </div>
+          <span class="mono text-xs uppercase tracking-widest opacity-45">01—04</span>
+        </div>
+
+        <div>
+          <p class="sr-only">Sprint focus areas: Product pages, Mobile UX, Performance and Analytics.</p>
+          <div class="focus-stage" aria-hidden="true">
+            {
+              focusAreas.map((area, index) => (
+                <article class="focus-item" style={`--focus-color: ${area.color}; --focus-index: ${index}`}>
+                  <span class="focus-number mono">{area.number}/04</span>
+                  <div>
+                    <p class="focus-title display">{area.title}</p>
+                    <p class="focus-detail">{area.detail}</p>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+          <div class="focus-progress" aria-hidden="true">
+            {
+              focusAreas.map((_, index) => (
+                <span style={`--focus-index: ${index}`}>
+                  <i />
+                </span>
+              ))
+            }
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
     <section class="border-b-2 border-black py-20 md:py-28">
       <div class="mx-auto grid max-w-[1400px] gap-12 px-5 md:px-10 lg:grid-cols-2 lg:gap-24">
@@ -520,3 +571,4 @@ const faqs = [
     });
   </script>
 </BaseLayout>
+
