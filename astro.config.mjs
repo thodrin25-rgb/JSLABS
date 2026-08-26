@@ -1,14 +1,14 @@
-import sitemap from "@astrojs/sitemap";
-import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "astro/config";
+import sitemap from '@astrojs/sitemap';
+import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from 'astro/config';
 
-const site = process.env.SITE_URL || "https://northshop.agency";
+const site = process.env.SITE_URL || 'https://northshop.agency';
 
 export default defineConfig({
   site,
-  output: "static",
+  output: 'static',
   integrations: [sitemap()],
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+  },
 });

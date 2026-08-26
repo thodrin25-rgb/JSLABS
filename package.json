@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "node scripts/astro.mjs dev",
     "build": "node scripts/astro.mjs check && node scripts/astro.mjs build",
-    "preview": "node scripts/astro.mjs preview"
+    "preview": "node scripts/astro.mjs preview",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "precommit": "node ./node_modules/lint-staged/bin/lint-staged.js",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
@@ -16,6 +20,13 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.8.3",
+    "prettier-plugin-astro": "^0.14.1",
     "typescript": "^6.0.3"
+  },
+  "lint-staged": {
+    "*.{astro,css,js,mjs,json,md,svg,yaml,yml}": "prettier --write"
   }
 }

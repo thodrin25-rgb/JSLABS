@@ -1,20 +1,20 @@
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
-type LegacyPage = "home" | "promotions" | "launches";
+type LegacyPage = 'home' | 'promotions' | 'launches';
 
 // Use the project directory at build time. `import.meta.url` points to a bundled file in dist.
-const source = readFileSync(resolve(process.cwd(), "index.html"), "utf8");
+const source = readFileSync(resolve(process.cwd(), 'index.html'), 'utf8');
 const markers: Record<LegacyPage, string> = {
-  home: "<!-- ============ PAGE: HOME ============ -->",
-  promotions: "<!-- ============ PAGE: PROMOTIONS ============ -->",
-  launches: "<!-- ============ PAGE: LAUNCHES ============ -->"
+  home: '<!-- ============ PAGE: HOME ============ -->',
+  promotions: '<!-- ============ PAGE: PROMOTIONS ============ -->',
+  launches: '<!-- ============ PAGE: LAUNCHES ============ -->',
 };
 
 const nextMarkers: Record<LegacyPage, string> = {
   home: markers.promotions,
   promotions: markers.launches,
-  launches: "<!-- FOOTER -->"
+  launches: '<!-- FOOTER -->',
 };
 
 /**
@@ -31,11 +31,11 @@ export function legacyContent(page: LegacyPage) {
 
   return source
     .slice(start, end)
-    .replace(/^\s*<main[^>]*>\s*/, "")
-    .replace(/\s*<\/main>\s*$/, "")
-    .replace("Q1 offers end in", "Limited availability")
+    .replace(/^\s*<main[^>]*>\s*/, '')
+    .replace(/\s*<\/main>\s*$/, '')
+    .replace('Q1 offers end in', 'Limited availability')
     .replace(
       /onsubmit="event\.preventDefault\(\); this\.querySelector\('button'\)\.textContent='Sent — talk soon ✦';"/,
-      'data-contact-form'
+      'data-contact-form',
     );
 }

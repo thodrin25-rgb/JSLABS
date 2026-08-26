@@ -1,11 +1,12 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { legacyContent } from "../lib/legacy-content";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { legacyContent } from '../lib/legacy-content';
 
-const title = "Shopify promotion and launch packages | North/Shop";
-const description = "Explore fixed-scope Shopify launch, redesign and care packages built for ecommerce brands that need measurable momentum.";
+const title = 'Shopify promotion and launch packages | North/Shop';
+const description =
+  'Explore fixed-scope Shopify launch, redesign and care packages built for ecommerce brands that need measurable momentum.';
 ---
 
 <BaseLayout {title} {description} path="/promotions">
-  <main set:html={legacyContent("promotions")} />
+  <main set:html={legacyContent('promotions')} />
 </BaseLayout>

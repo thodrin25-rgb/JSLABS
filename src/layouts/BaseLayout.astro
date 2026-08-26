@@ -1,36 +1,37 @@
 ---
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
-import "../styles/global.css";
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import '../styles/global.css';
 
 interface Props {
   title: string;
   description: string;
   path?: string;
-  schema?: "organization" | "service";
+  schema?: 'organization' | 'service';
 }
 
-const { title, description, path = "/", schema = "service" } = Astro.props;
-const site = Astro.site ?? new URL("https://northshop.agency");
+const { title, description, path = '/', schema = 'service' } = Astro.props;
+const site = Astro.site ?? new URL('https://northshop.agency');
 const canonical = new URL(path, site);
-const socialImage = new URL("/social-card.svg", site);
-const schemaData = schema === "organization"
-  ? {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      name: "North/Shop",
-      url: site.href,
-      email: "hello@northshop.agency",
-      description
-    }
-  : {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      name: title,
-      description,
-      url: canonical.href,
-      isPartOf: { "@type": "WebSite", name: "North/Shop", url: site.href }
-    };
+const socialImage = new URL('/social-card.svg', site);
+const schemaData =
+  schema === 'organization'
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'ProfessionalService',
+        name: 'North/Shop',
+        url: site.href,
+        email: 'hello@northshop.agency',
+        description,
+      }
+    : {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: title,
+        description,
+        url: canonical.href,
+        isPartOf: { '@type': 'WebSite', name: 'North/Shop', url: site.href },
+      };
 ---
 
 <!doctype html>
@@ -42,9 +43,14 @@ const schemaData = schema === "organization"
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#f4f2ec" />
     <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" sizes="64x64" href="/brand/favicon.png" />
+    <link rel="apple-touch-icon" href="/brand/northshop-mark.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="North/Shop" />
     <meta property="og:title" content={title} />
@@ -63,33 +69,33 @@ const schemaData = schema === "organization"
     <slot />
     <Footer />
     <script>
-      const pagePaths = { home: "/", promotions: "/promotions", launches: "/launches" };
+      const pagePaths = { home: '/', promotions: '/promotions', launches: '/launches' };
 
-      document.addEventListener("click", (event) => {
-        const trigger = event.target instanceof Element ? event.target.closest<HTMLElement>("[data-page-link]") : null;
+      document.addEventListener('click', (event) => {
+        const trigger = event.target instanceof Element ? event.target.closest<HTMLElement>('[data-page-link]') : null;
         if (!trigger) return;
 
         const page = trigger.dataset.pageLink as keyof typeof pagePaths | undefined;
         if (!page) return;
 
         event.preventDefault();
-        const target = trigger.dataset.scroll || (trigger instanceof HTMLAnchorElement && trigger.hash) || "";
+        const target = trigger.dataset.scroll || (trigger instanceof HTMLAnchorElement && trigger.hash) || '';
         window.location.assign(`${pagePaths[page]}${target}`);
       });
 
-      const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
-      form?.addEventListener("submit", (event) => {
+      const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
+      form?.addEventListener('submit', (event) => {
         event.preventDefault();
         const button = form.querySelector<HTMLButtonElement>("button[type='submit'], button");
         if (button) {
-          button.textContent = "Sent — talk soon ✦";
+          button.textContent = 'Sent — talk soon ✦';
           button.disabled = true;
         }
       });
 
-      const countdown = document.querySelector<HTMLElement>("#promoCountdown");
+      const countdown = document.querySelector<HTMLElement>('#promoCountdown');
       if (countdown) {
-        countdown.closest("div")?.remove();
+        countdown.closest('div')?.remove();
       }
     </script>
   </body>
