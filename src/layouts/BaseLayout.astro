@@ -8,9 +8,14 @@ interface Props {
   description: string;
   path?: string;
   schema?: 'organization' | 'service';
+  offer?: {
+    name: string;
+    price: string;
+    currency: string;
+  };
 }
 
-const { title, description, path = '/', schema = 'service' } = Astro.props;
+const { title, description, path = '/', schema = 'service', offer } = Astro.props;
 const site = Astro.site ?? new URL('https://northshop.agency');
 const canonical = new URL(path, site);
 const socialImage = new URL('/social-card.svg', site);
@@ -26,11 +31,26 @@ const schemaData =
       }
     : {
         '@context': 'https://schema.org',
-        '@type': 'WebPage',
+        '@type': 'Service',
         name: title,
+        serviceType: title,
         description,
         url: canonical.href,
-        isPartOf: { '@type': 'WebSite', name: 'North/Shop', url: site.href },
+        provider: {
+          '@type': 'ProfessionalService',
+          name: 'North/Shop',
+          url: site.href,
+          email: 'hello@northshop.agency',
+        },
+        offers: offer
+          ? {
+              '@type': 'Offer',
+              name: offer.name,
+              price: offer.price,
+              priceCurrency: offer.currency,
+              url: canonical.href,
+            }
+          : undefined,
       };
 ---
 
@@ -80,16 +100,6 @@ const schemaData =
         event.preventDefault();
         const target = trigger.dataset.scroll || (trigger instanceof HTMLAnchorElement && trigger.hash) || '';
         window.location.assign(`${pagePaths[page]}${target}`);
-      });
-
-      const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
-      form?.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const button = form.querySelector<HTMLButtonElement>("button[type='submit'], button");
-        if (button) {
-          button.textContent = 'Sent — talk soon ✦';
-          button.disabled = true;
-        }
       });
 
       const countdown = document.querySelector<HTMLElement>('#promoCountdown');
