@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">North Shop</title>
+  <desc id="desc">High-voltage Shopify agency</desc>
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <circle cx="1070" cy="90" r="180" fill="#d4ff3a"/>
+  <circle cx="70" cy="580" r="180" fill="#ff4d1c"/>
+  <text x="70" y="270" fill="#f4f2ec" font-family="Arial Black, sans-serif" font-size="130" letter-spacing="-8">NORTH/</text>
+  <text x="70" y="400" fill="#d4ff3a" font-family="Arial Black, sans-serif" font-size="130" letter-spacing="-8">SHOP</text>
+  <text x="76" y="485" fill="#f4f2ec" font-family="Arial, sans-serif" font-size="34">High-voltage Shopify agency</text>
+</svg>

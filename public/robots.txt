@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://northshop.agency/sitemap-index.xml

@@ -1,0 +1,8 @@
+{
+  "editor.formatOnSave": true,
+  "files.eol": "\n",
+  "html.format.wrapLineLength": 120,
+  "html.validate.scripts": true,
+  "html.validate.styles": true
+}
+

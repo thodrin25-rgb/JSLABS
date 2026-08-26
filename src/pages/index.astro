@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { legacyContent } from "../lib/legacy-content";
+
+const title = "North/Shop — Shopify agency for high-converting stores";
+const description = "North/Shop designs, builds and optimizes high-performance Shopify stores for ambitious ecommerce brands.";
+---
+
+<BaseLayout {title} {description} schema="organization">
+  <main set:html={legacyContent("home")} />
+</BaseLayout>
