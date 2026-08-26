@@ -1,0 +1,37 @@
+<header class="fixed top-0 inset-x-0 z-50 border-b-2 border-black bg-[#f4f2ec]/90 backdrop-blur">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-10 h-16 md:h-20 flex items-center justify-between">
+    <a href="/" class="display text-xl md:text-2xl" aria-label="North Shop, home">NORTH<span class="text-[var(--pop)]">/</span>SHOP</a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium" aria-label="Primary navigation">
+      <a href="/#services" class="hover:text-[var(--pop)]">Services</a>
+      <a href="/#work" class="hover:text-[var(--pop)]">Work</a>
+      <a href="/#process" class="hover:text-[var(--pop)]">Process</a>
+      <a href="/promotions" class="hover:text-[var(--pop)]">Promotions</a>
+      <a href="/launches" class="hover:text-[var(--pop)]">Launches</a>
+      <a href="/#faq" class="hover:text-[var(--pop)]">FAQ</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="/#contact" class="btn-primary px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-bold uppercase tracking-wider">Start a project <span aria-hidden="true">→</span></a>
+      <button id="menu-button" class="md:hidden btn-outline px-3 py-2 text-lg leading-none" type="button" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t-2 border-black bg-[var(--bone)]">
+    <nav class="px-5 py-4 flex flex-col gap-3 text-sm font-bold uppercase tracking-wider" aria-label="Mobile navigation">
+      <a href="/#services" class="py-1">Services</a>
+      <a href="/#work" class="py-1">Work</a>
+      <a href="/#process" class="py-1">Process</a>
+      <a href="/promotions" class="py-1 text-[var(--pop)]">Promotions</a>
+      <a href="/launches" class="py-1 text-[var(--pop)]">Launches</a>
+      <a href="/#faq" class="py-1">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>("#menu-button");
+  const menu = document.querySelector<HTMLElement>("#mobile-menu");
+
+  button?.addEventListener("click", () => {
+    const open = menu?.classList.toggle("hidden") === false;
+    button.setAttribute("aria-expanded", String(open));
+  });
+</script>
