@@ -475,10 +475,29 @@ const faqs = [
           </div>
         </div>
 
-        <form id="store-review-form" class="dark-form space-y-5" aria-describedby="form-note form-status">
+        <form
+          id="store-review-form"
+          class="dark-form relative space-y-5"
+          action="/api/contact"
+          method="post"
+          aria-describedby="form-note form-status"
+        >
+          <input type="hidden" name="submissionId" value="" />
+          <div class="form-honeypot" aria-hidden="true">
+            <label for="website">Leave this field empty</label>
+            <input id="website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
           <div>
             <label for="name" class="mono mb-2 block text-xs uppercase tracking-wider">Name</label>
-            <input id="name" name="name" required autocomplete="name" class="border-[var(--bone)] text-[var(--bone)]" />
+            <input
+              id="name"
+              name="name"
+              required
+              minlength="2"
+              maxlength="100"
+              autocomplete="name"
+              class="border-[var(--bone)] text-[var(--bone)]"
+            />
           </div>
           <div class="grid gap-5 sm:grid-cols-2">
             <div>
@@ -488,6 +507,7 @@ const faqs = [
                 name="email"
                 required
                 type="email"
+                maxlength="254"
                 autocomplete="email"
                 class="border-[var(--bone)] text-[var(--bone)]"
               />
@@ -500,6 +520,7 @@ const faqs = [
                 required
                 type="url"
                 inputmode="url"
+                maxlength="500"
                 placeholder="https://"
                 class="border-[var(--bone)] text-[var(--bone)]"
               />
@@ -509,31 +530,43 @@ const faqs = [
             <label for="goal" class="mono mb-2 block text-xs uppercase tracking-wider"
               >What are you trying to improve?</label
             >
-            <textarea id="goal" name="goal" required rows="4" class="border-[var(--bone)] text-[var(--bone)]"
-            ></textarea>
+            <textarea
+              id="goal"
+              name="goal"
+              required
+              minlength="10"
+              maxlength="2000"
+              rows="4"
+              class="border-[var(--bone)] text-[var(--bone)]"></textarea>
           </div>
           <div class="grid gap-5 sm:grid-cols-2">
             <div>
               <label for="priority" class="mono mb-2 block text-xs uppercase tracking-wider"
                 >Priority product <span class="opacity-55">(optional)</span></label
               >
-              <input id="priority" name="priority" class="border-[var(--bone)] text-[var(--bone)]" />
+              <input id="priority" name="priority" maxlength="200" class="border-[var(--bone)] text-[var(--bone)]" />
             </div>
             <div>
               <label for="deadline" class="mono mb-2 block text-xs uppercase tracking-wider"
                 >Deadline <span class="opacity-55">(optional)</span></label
               >
-              <input id="deadline" name="deadline" class="border-[var(--bone)] text-[var(--bone)]" />
+              <input id="deadline" name="deadline" maxlength="100" class="border-[var(--bone)] text-[var(--bone)]" />
             </div>
           </div>
           <button type="submit" class="btn-invert w-full px-8 py-5 text-sm font-bold uppercase tracking-wider">
             Request my store review →
           </button>
           <p id="form-note" class="text-xs leading-relaxed opacity-60">
-            Submitting opens your email app with the request ready to send. Your information is only used to review and
-            respond to your inquiry.
+            Your request is sent securely to North/Shop. Your information is only used to review and respond to your
+            inquiry.
           </p>
-          <p id="form-status" class="mono text-xs uppercase tracking-wider text-[var(--lime)]" aria-live="polite"></p>
+          <p
+            id="form-status"
+            class="mono text-xs uppercase tracking-wider text-[var(--lime)]"
+            role="status"
+            aria-live="polite"
+          >
+          </p>
         </form>
       </div>
     </section>
@@ -542,29 +575,65 @@ const faqs = [
   <script>
     const form = document.querySelector<HTMLFormElement>('#store-review-form');
     const status = document.querySelector<HTMLElement>('#form-status');
+    const submitButton = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const submissionId = form?.elements.namedItem('submissionId') as HTMLInputElement | null;
 
-    form?.addEventListener('submit', (event) => {
+    const createSubmissionId = () => {
+      if (submissionId) submissionId.value = crypto.randomUUID();
+    };
+
+    const showStatus = (message: string, state: 'success' | 'error') => {
+      if (!status) return;
+      status.textContent = message;
+      status.dataset.state = state;
+    };
+
+    createSubmissionId();
+
+    form?.addEventListener('submit', async (event) => {
       event.preventDefault();
       if (!form.reportValidity()) return;
 
-      const data = new FormData(form);
-      const store = String(data.get('store') ?? 'Shopify store');
-      const subject = encodeURIComponent(`Shopify store review request — ${store}`);
-      const body = encodeURIComponent(
-        [
-          `Name: ${data.get('name') ?? ''}`,
-          `Email: ${data.get('email') ?? ''}`,
-          `Store: ${store}`,
-          `Priority product: ${data.get('priority') || 'Not specified'}`,
-          `Deadline: ${data.get('deadline') || 'Not specified'}`,
-          '',
-          'What I want to improve:',
-          String(data.get('goal') ?? ''),
-        ].join('\n'),
-      );
+      const originalButtonText = submitButton?.textContent ?? 'Request my store review →';
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending request…';
+      }
+      form.setAttribute('aria-busy', 'true');
+      if (status) {
+        status.textContent = '';
+        delete status.dataset.state;
+      }
 
-      if (status) status.textContent = 'Opening your email app…';
-      window.location.href = `mailto:hello@northshop.agency?subject=${subject}&body=${body}`;
+      try {
+        const payload = Object.fromEntries(new FormData(form).entries());
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+        const result = (await response.json()) as { message?: string };
+
+        if (!response.ok) throw new Error(result.message || 'We could not send your request. Please try again.');
+
+        form.reset();
+        createSubmissionId();
+        showStatus(result.message || 'Request sent. North/Shop will reply shortly.', 'success');
+      } catch (error) {
+        showStatus(
+          error instanceof Error ? error.message : 'We could not send your request. Please try again.',
+          'error',
+        );
+      } finally {
+        form.removeAttribute('aria-busy');
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+      }
     });
   </script>
 </BaseLayout>
