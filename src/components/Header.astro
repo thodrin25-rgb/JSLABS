@@ -9,17 +9,23 @@
       </span>
     </a>
     <nav class="hidden md:flex items-center gap-7 text-sm font-medium" aria-label="Primary navigation">
-      <a href="/#sprint" class="hover:text-[var(--pop)]">What’s included</a>
-      <a href="/#process" class="hover:text-[var(--pop)]">How it works</a>
-      <a href="/#fit" class="hover:text-[var(--pop)]">Is it for you?</a>
+      <a href="/#services" class="hover:text-[var(--pop)]" data-en="Services" data-es="Servicios">Services</a>
+      <a href="/#process" class="hover:text-[var(--pop)]" data-en="How it works" data-es="Cómo trabajamos"
+        >How it works</a
+      >
       <a href="/#faq" class="hover:text-[var(--pop)]">FAQ</a>
     </nav>
     <div class="flex items-center gap-3">
       <a
         href="/#contact"
         class="btn-primary px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-bold uppercase tracking-wider"
-        >Request a review <span aria-hidden="true">→</span></a
+        ><span data-en="Request a review" data-es="Solicitar revisión">Request a review</span>
+        <span aria-hidden="true">→</span></a
       >
+      <div class="language-toggle" role="group" aria-label="Language selector">
+        <button type="button" data-language="en" aria-pressed="true">EN</button>
+        <button type="button" data-language="es" aria-pressed="false">ES</button>
+      </div>
       <button
         id="menu-button"
         class="md:hidden btn-outline px-3 py-2 text-lg leading-none"
@@ -35,11 +41,12 @@
       class="px-5 py-4 flex flex-col gap-3 text-sm font-bold uppercase tracking-wider"
       aria-label="Mobile navigation"
     >
-      <a href="/#sprint" class="py-1">What’s included</a>
-      <a href="/#process" class="py-1">How it works</a>
-      <a href="/#fit" class="py-1">Is it for you?</a>
+      <a href="/#services" class="py-1" data-en="Services" data-es="Servicios">Services</a>
+      <a href="/#process" class="py-1" data-en="How it works" data-es="Cómo trabajamos">How it works</a>
       <a href="/#faq" class="py-1">FAQ</a>
-      <a href="/#contact" class="py-1 text-[var(--pop)]">Request a review</a>
+      <a href="/#contact" class="py-1 text-[var(--pop)]" data-en="Request a review" data-es="Solicitar revisión"
+        >Request a review</a
+      >
     </nav>
   </div>
 </header>
@@ -59,3 +66,4 @@
     button?.setAttribute('aria-expanded', 'false');
   });
 </script>
+
