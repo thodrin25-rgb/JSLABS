@@ -50,4 +50,3 @@ pnpm start
 ```
 
 Configura `SITE_URL` y las tres variables de Resend tanto durante el despliegue como en el entorno de ejecución.
-
