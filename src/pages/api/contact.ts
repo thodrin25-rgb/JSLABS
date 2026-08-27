@@ -134,11 +134,21 @@ export const POST: APIRoute = async ({ request }) => {
   const validationError = validate(payload);
   if (validationError) return json({ message: validationError }, 422);
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.RESEND_FROM_EMAIL;
-  const to = process.env.RESEND_TO_EMAIL;
+  // Vite exposes local `.env` files through import.meta.env during development,
+  // while Node hosts normally inject secrets into process.env at runtime.
+  const apiKey = process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
+  const from = process.env.RESEND_FROM_EMAIL || import.meta.env.RESEND_FROM_EMAIL;
+  const to = process.env.RESEND_TO_EMAIL || import.meta.env.RESEND_TO_EMAIL;
+  const missingEnvironmentVariables = [
+    !apiKey && 'RESEND_API_KEY',
+    !from && 'RESEND_FROM_EMAIL',
+    !to && 'RESEND_TO_EMAIL',
+  ].filter(Boolean);
+
   if (!apiKey || !from || !to) {
-    console.error('Resend contact form is missing required server environment variables.');
+    console.error(
+      `Resend contact form is missing required server environment variables: ${missingEnvironmentVariables.join(', ')}.`,
+    );
     return json({ message: 'Email service is temporarily unavailable. Please try again later.' }, 503);
   }
 
