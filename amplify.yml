@@ -3,16 +3,16 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm install
+        - npm install --global pnpm@11.19.0
+        - pnpm config set store-dir .pnpm-store
+        - pnpm install --frozen-lockfile
     build:
       commands:
-        - npm run build
-        - npm prune --omit=dev --no-audit --no-fund
-        - mv node_modules ./.amplify-hosting/compute/default
+        - pnpm run build
   artifacts:
     baseDirectory: .amplify-hosting
     files:
       - '**/*'
   cache:
     paths:
-      - node_modules/**/*
+      - .pnpm-store/**/*
