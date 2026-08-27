@@ -88,6 +88,28 @@ const schemaData =
     <slot />
     <Footer />
     <script>
+      const applyLanguage = (language: 'en' | 'es') => {
+        document.documentElement.lang = language;
+        document.querySelectorAll<HTMLElement>('[data-en][data-es]').forEach((element) => {
+          element.textContent = element.dataset[language] ?? element.textContent;
+        });
+        document.querySelectorAll<HTMLButtonElement>('[data-language]').forEach((button) => {
+          const active = button.dataset.language === language;
+          button.setAttribute('aria-pressed', String(active));
+        });
+        localStorage.setItem('northshop-language', language);
+      };
+
+      const savedLanguage = localStorage.getItem('northshop-language');
+      applyLanguage(savedLanguage === 'es' ? 'es' : 'en');
+      document.addEventListener('click', (event) => {
+        const languageButton =
+          event.target instanceof Element ? event.target.closest<HTMLButtonElement>('[data-language]') : null;
+        if (languageButton?.dataset.language === 'en' || languageButton?.dataset.language === 'es') {
+          applyLanguage(languageButton.dataset.language);
+        }
+      });
+
       const pagePaths = { home: '/', promotions: '/promotions', launches: '/launches' };
 
       document.addEventListener('click', (event) => {
@@ -109,3 +131,4 @@ const schemaData =
     </script>
   </body>
 </html>
+
