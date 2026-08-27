@@ -25,6 +25,23 @@ body {
   margin: 0;
   overflow-x: clip;
 }
+.form-honeypot {
+  height: 1px;
+  left: -10000px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+#form-status[data-state='error'] {
+  color: var(--pop);
+}
+#form-status[data-state='success'] {
+  color: var(--lime);
+}
+.btn-invert:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
 .display {
   font-family: 'Archivo Black', sans-serif;
   letter-spacing: -0.03em;
