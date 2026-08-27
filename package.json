@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node scripts/astro.mjs dev",
     "build": "node scripts/astro.mjs check && node scripts/astro.mjs build",
+    "start": "node ./dist/server/entry.mjs",
     "preview": "node scripts/astro.mjs preview",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -13,9 +14,11 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@astrojs/node": "^11.1.4",
     "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.2.6",
+    "resend": "^6.22.1",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
@@ -27,6 +30,7 @@
     "typescript": "^6.0.3"
   },
   "lint-staged": {
-    "*.{astro,css,js,mjs,json,md,yaml,yml}": "prettier --write"
+    "*.{astro,css,js,mjs,ts,tsx,json,md,yaml,yml}": "prettier --write"
   }
 }
+
