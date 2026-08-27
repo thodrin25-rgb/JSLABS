@@ -33,4 +33,3 @@
     "*.{astro,css,js,mjs,ts,tsx,json,md,yaml,yml}": "prettier --write"
   }
 }
-
