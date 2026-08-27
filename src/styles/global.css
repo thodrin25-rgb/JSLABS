@@ -42,6 +42,24 @@ body {
   cursor: wait;
   opacity: 0.65;
 }
+.language-toggle {
+  border: 2px solid var(--ink);
+  display: flex;
+}
+.language-toggle button {
+  background: transparent;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.45rem 0.5rem;
+}
+.language-toggle button + button {
+  border-left: 2px solid var(--ink);
+}
+.language-toggle button[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--lime);
+}
 .display {
   font-family: 'Archivo Black', sans-serif;
   letter-spacing: -0.03em;
@@ -356,3 +374,4 @@ select:focus {
     display: none;
   }
 }
+
