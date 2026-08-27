@@ -33,6 +33,13 @@ El formulario de contacto envía la solicitud mediante `POST /api/contact`. Copi
 - `RESEND_FROM_EMAIL`: remitente perteneciente a un dominio verificado en Resend.
 - `RESEND_TO_EMAIL`: buzón donde North/Shop recibirá las solicitudes.
 
+En desarrollo local, el archivo debe llamarse exactamente `.env` y estar junto a `package.json`. Reinicia `pnpm dev`
+después de crearlo o modificarlo. En PowerShell puedes crear la copia inicial con:
+
+```powershell
+Copy-Item .env.example .env
+```
+
 La API key se usa únicamente en el servidor. El endpoint valida los campos, limita solicitudes repetidas, incluye un
 honeypot y usa una clave de idempotencia para evitar correos duplicados. Para probar el envío real, inicia el sitio con
 las variables configuradas y envía el formulario desde la página.
