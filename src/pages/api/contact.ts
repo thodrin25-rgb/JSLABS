@@ -188,4 +188,3 @@ export const ALL: APIRoute = () =>
   json({ message: 'Method not allowed.' }, 405, {
     Allow: 'POST',
   });
-
