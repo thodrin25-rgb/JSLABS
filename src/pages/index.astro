@@ -78,7 +78,7 @@ const faqs = [
     <section class="relative overflow-hidden border-b-2 border-black pt-28 pb-16 md:pt-40 md:pb-24">
       <div class="blob absolute -right-24 top-24 h-72 w-72 rounded-full bg-[var(--lime)]" aria-hidden="true"></div>
       <div
-        class="relative mx-auto grid max-w-[1400px] gap-14 px-5 md:px-10 xl:grid-cols-[1fr_minmax(34rem,.92fr)] xl:items-center"
+        class="relative mx-auto grid max-w-[1400px] grid-cols-[minmax(0,1fr)] gap-14 px-5 md:px-10 xl:grid-cols-[minmax(0,1fr)_minmax(34rem,.92fr)] xl:items-center"
       >
         <div>
           <span
@@ -87,9 +87,11 @@ const faqs = [
             data-es="Crecimiento e-commerce · estrategia + implementación"
             >E-commerce growth · strategy + implementation</span
           >
-          <h1 class="display mt-7 max-w-5xl text-[15vw] leading-[.83] sm:text-[11vw] xl:text-[6.2rem]">
-            <span data-en="Turn more visits into" data-es="Convierte más visitas en">Turn more visits into</span>
-            <span class="text-[var(--pop)]" data-en="confident purchases." data-es="compras con confianza."
+          <h1 class="hero-title display mt-7 max-w-5xl text-[15vw] leading-[.83] sm:text-[11vw] xl:text-[6.2rem]">
+            <span class="block" data-en="Turn more visits into" data-es="Convierte más visitas en"
+              >Turn more visits into</span
+            >
+            <span class="block text-[var(--pop)]" data-en="confident purchases." data-es="compras con confianza."
               >confident purchases.</span
             >
           </h1>
