@@ -25,6 +25,9 @@ body {
   margin: 0;
   overflow-x: clip;
 }
+main :where(.grid) > * {
+  min-width: 0;
+}
 .form-honeypot {
   height: 1px;
   left: -10000px;
@@ -51,7 +54,16 @@ body {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.7rem;
   font-weight: 700;
-  padding: 0.45rem 0.5rem;
+  padding: 0.45rem 0.45rem;
+}
+@media (max-width: 639px) {
+  .hero-title {
+    font-size: clamp(1.85rem, 11.5vw, 3.25rem);
+  }
+  main h2.display {
+    font-size: clamp(1.95rem, 10vw, 4rem);
+    overflow-wrap: anywhere;
+  }
 }
 .language-toggle button + button {
   border-left: 2px solid var(--ink);
